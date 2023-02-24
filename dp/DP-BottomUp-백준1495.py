@@ -6,10 +6,10 @@ dp[0][s] = 1
 for i in range(n):
     for j in range(m+1):
         if dp[i][j] == 1:
-            if j+v[i] <= m:
-                dp[i+1][j+v[i]] = 1
-            if j-v[i] >= 0:
-                dp[i+1][j-v[i]] = 1
+            if j + v[i] <= m:
+                dp[i + 1][j + v[i]] = 1
+            if j - v[i] >= 0:
+                dp[i + 1][j - v[i]] = 1
 
 ans = -1
 for i in range(m, -1, -1):
