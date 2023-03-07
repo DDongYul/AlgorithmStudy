@@ -1,3 +1,5 @@
+#https://school.programmers.co.kr/learn/courses/30/lessons/150368 -카카오 2023 이모티콘 수거
+
 from itertools import product
 
 def solution(users, emoticons):
