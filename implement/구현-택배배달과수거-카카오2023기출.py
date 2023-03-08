@@ -1,3 +1,5 @@
+#https://school.programmers.co.kr/learn/courses/30/lessons/150369
+
 def solution(cap, n, deliveries, pickups):
     answer = 0
     deliveries = list(reversed(deliveries))
@@ -9,7 +11,6 @@ def solution(cap, n, deliveries, pickups):
     while True:
         if curr_del>=n and curr_pic>=n:
             break
-
         if curr_del<n:
             while deliveries[curr_del] == 0:
                 curr_del+=1
@@ -33,6 +34,7 @@ def solution(cap, n, deliveries, pickups):
                     curr_del+=1
                     if curr_del >= n:
                         break
+
         if curr_pic<n:
             while tp<cap:
                 if tp+pickups[curr_pic]>=cap:
@@ -47,12 +49,12 @@ def solution(cap, n, deliveries, pickups):
         td = 0
         tp = 0
     return answer
-
-c=2
-nn=7
-d=[1, 0, 2, 0, 1, 0, 2]
-p=[0, 2, 0, 1, 0, 2, 0]
-print(solution(c,nn,d,p))
+#
+# c=2
+# nn=7
+# d=[1, 0, 2, 0, 1, 0, 2]
+# p=[0, 2, 0, 1, 0, 2, 0]
+# print(solution(c,nn,d,p))
 
 
 
