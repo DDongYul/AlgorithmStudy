@@ -25,7 +25,7 @@ def solution(n, k):
                 dp[i] += dp[i - k]
             else:
                 if i == k * 3:  # 1,3번 케이스가 경우 같을 때 -> k,2k로 나누어질때
-            dp[i] += dp[i - k]
+                    dp[i] += dp[i - k]
             dp[i] += dp[i - k]
             q = int((n - k) / 2)
             p = q + k
