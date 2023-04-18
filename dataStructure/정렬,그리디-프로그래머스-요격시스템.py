@@ -16,7 +16,7 @@
 #             continue
 #     return answer
 
-#굳이 pop 할 필요 없이 index 사용해서 풀면 더 효율적
+#이번 문제는 굳이 pop 할 필요 없이 정렬 후 index 사용해서 풀면 더 효율적
 def solution(targets):
     answer = 0
     targets.sort(key=lambda x:(x[0],x[1]))
