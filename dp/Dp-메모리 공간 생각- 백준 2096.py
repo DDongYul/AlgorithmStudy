@@ -1,24 +1,14 @@
-import sys
-input = sys.stdin.readline
+from sys import stdin
 
-n = int(input())
-dp1 = []
-dp2 = []
+N = int(input())
+# 맨 처음 세개의 숫자를 입력받아 DP의 초기 값을 설정한다.
+arr = list(map(int, stdin.readline().split()))
+maxDP = arr
+minDP = arr
+for _ in range(N - 1):
+    arr = list(map(int, stdin.readline().split()))
+    # 세가지 값을 입력받을 때마다, DP에 새롭게 갱신한다.
+    maxDP = [arr[0] + max(maxDP[0], maxDP[1]), arr[1] + max(maxDP), arr[2] + max(maxDP[1], maxDP[2])]
+    minDP = [arr[0] + min(minDP[0], minDP[1]), arr[1] + min(minDP), arr[2] + min(minDP[1], minDP[2])]
 
-#그냥 temp값을 dp1,dp2에 넣으면 temp 리스트를 추가할 때 참조하는 객체가 동일하기 때문에 같은 리스트가 됨
-#즉 dp1을 바꾸면 dp2도 값이 바뀜, 이런식으로 복사한 list를 넣어줘야한다.
-for _ in range(n):
-    temp = list(map(int,input().split()))
-    dp1.append(temp[:])
-    dp2.append(temp[:])
-
-for i in range(1,n):
-    dp1[i][0] = max(dp1[i-1][0],dp1[i-1][1]) + dp1[i][0]
-    dp1[i][1] = max(dp1[i-1][0],dp1[i-1][1],dp1[i-1][2]) + dp1[i][1]
-    dp1[i][2] = max(dp1[i-1][1],dp1[i-1][2]) + dp1[i][2]
-
-    dp2[i][0] = min(dp2[i - 1][0], dp2[i - 1][1]) + dp2[i][0]
-    dp2[i][1] = min(dp2[i - 1][0], dp2[i - 1][1], dp2[i - 1][2]) + dp2[i][1]
-    dp2[i][2] = min(dp2[i - 1][1], dp2[i - 1][2]) + dp2[i][2]
-
-print(max(dp1[n-1]) , min(dp2[n-1]))
+print(max(maxDP), min(minDP))
