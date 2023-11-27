@@ -28,42 +28,38 @@
 from heapq import heappush, heappop
 
 INF = 100001 * 200
+
+
 def solution(n, s, a, b, fares):
-    dist = [[INF for _ in range(n+1)] for _ in range(n+1)]
-    edges = [[] for _ in range(n+1)]
+    edges = [[] for _ in range(n + 1)]
 
     for c, d, f in fares:
-        dist[c][d] = f
-        dist[d][c] = f
-        edges[c].append(d)
-        edges[d].append(c)
+        edges[c].append((d, f))
+        edges[d].append((c, f))
 
-    for i in range(n+1):
-        dist[i][i] = 0
+    ds = dijkstra(edges, s)
+    da = dijkstra(edges, a)
+    db = dijkstra(edges, b)
 
-    ds = dijkstra(dist[s],edges,s)
-    da = dijkstra(dist[a],edges,a)
-    db = dijkstra(dist[b],edges,b)
-
-    for i in dist[s]:
-        print(i)
     answer = INF
-    for i in range(n):
+    for i in range(n + 1):
         answer = min(answer, da[i] + db[i] + ds[i])
 
     return answer
 
 
-def dijkstra(dist,edges,start):
+def dijkstra(edges, start):
+    dist = [INF for _ in range(len(edges))]
+    dist[start] = 0
     heap = [(0, start)]
     while heap:
         w, d = heappop(heap)
         if w > dist[d]:
             continue
-        for ww, dd in edges[d]:
+        for dd, ww in edges[d]:
             if dist[dd] > w + ww:
                 dist[dd] = w + ww
-                heappush(heap, [w + ww, dd])
+                heappush(heap, (w + ww, dd))
     return dist
 
 
